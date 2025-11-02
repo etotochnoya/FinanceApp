@@ -163,13 +163,12 @@ fun router(renderer: TemplateRenderer, projects: Projects, users: Users): HttpHa
 )
 
 fun fillData(): Projects {
-    // Инициализируем Projects с пустым списком, счетчик будет 0
-    val projects = Projects(listOf())
 
-    // --- Исходные проекты ---
+    val projects = Projects(listOf())
+    var newProjectId = 0
     projects.add(
         Project(
-            projects.counterProjects.also { projects.counterProjects++ }, // Передаем текущее значение и инкрементируем счетчик
+            newProjectId++,
             "Онлайн сервис такси",
             "Райан Гослинг",
             "Закажи такси онлайн или по телефону и по низкой цене по всей стране",
@@ -181,7 +180,7 @@ fun fillData(): Projects {
 
     projects.add(
         Project(
-            projects.counterProjects.also { projects.counterProjects++ }, // Инкрементируем счетчик
+            newProjectId++,
             "Печать визиток",
             "Патрик Бэйтмен",
             "Быстрая и качественная печать визиток по вашему макету",
@@ -193,7 +192,7 @@ fun fillData(): Projects {
 
     projects.add(
         Project(
-            projects.counterProjects.also { projects.counterProjects++ },
+            newProjectId++,
             "Разработка мобильного приложения",
             "Виталий Кукурузов",
             "Создание интуитивно понятного и функционального мобильного приложения для iOS и Android",
@@ -205,7 +204,7 @@ fun fillData(): Projects {
 
     projects.add(
         Project(
-            projects.counterProjects.also { projects.counterProjects++ },
+            newProjectId++,
             "Создание онлайн-курсов",
             "Сергей Огурцов",
             "Разработка образовательных курсов по популярным темам с экспертными преподавателями",
@@ -217,7 +216,7 @@ fun fillData(): Projects {
 
     projects.add(
         Project(
-            projects.counterProjects.also { projects.counterProjects++ },
+            newProjectId++,
             "Автоматизация вывоза мусора",
             "Тони Сопрано",
             "Автоматизация вывоза мусора",
@@ -229,7 +228,7 @@ fun fillData(): Projects {
 
     projects.add(
         Project(
-            projects.counterProjects.also { projects.counterProjects++ },
+            newProjectId++,
             "3D-печать архитектурных моделей",
             "Оскар Айзек",
             "Создание детализированных 3D-моделей зданий и сооружений для презентаций",
@@ -241,7 +240,7 @@ fun fillData(): Projects {
 
     projects.add(
         Project(
-            projects.counterProjects.also { projects.counterProjects++ },
+            newProjectId++,
             "Разработка игры-головоломки",
             "Флоренс Пью",
             "Создание увлекательной мобильной игры-головоломки с уникальным геймплеем",
@@ -253,7 +252,7 @@ fun fillData(): Projects {
 
     projects.add(
         Project(
-            projects.counterProjects.also { projects.counterProjects++ },
+            newProjectId++,
             "Автоматизация складских процессов",
             "Пол Мескал",
             "Внедрение системы автоматизации для управления складскими операциями и оптимизации логистики",
@@ -265,7 +264,7 @@ fun fillData(): Projects {
 
     projects.add(
         Project(
-            projects.counterProjects.also { projects.counterProjects++ },
+            newProjectId++,
             "Разработка CRM-системы",
             "Аня Тейлор-Джой",
             "Создание кастомизированной CRM-системы для управления клиентами и продажами",
@@ -277,7 +276,7 @@ fun fillData(): Projects {
 
     projects.add(
         Project(
-            projects.counterProjects.also { projects.counterProjects++ },
+            newProjectId++,
             "Оптимизация SEO для интернет-магазина",
             "Джереми Аллен Уайт",
             "Улучшение видимости интернет-магазина в поисковых системах для увеличения трафика и продаж",
