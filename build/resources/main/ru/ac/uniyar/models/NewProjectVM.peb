@@ -1,0 +1,51 @@
+{% extends "./layout.peb" %}
+    {% block title %}Создание проекта{% endblock %}
+
+{% block content %}
+        <form target="_self" method="POST">
+            <label>entrepreneur
+                <input type="text" placeholder="rayan" name="entrepreneur" value="{{model.entrepreneur}}"required>
+            </label>
+
+            <label>Название проекта
+                <input type="text" placeholder="say smth" name="projectName" value="{{ model.projectName }}"required>
+            </label>
+
+            <label>Описание
+                <input type="text" placeholder="say smth" name="description" value="{{ model.description }}" required>
+            </label>
+
+            <label>Размер фонда
+                <input type="text" placeholder="say smth" name="targetFundSize" value="{{ model.targetFundSize }}"required>
+            </label>
+
+            <label>Год начала сбора
+                <input type="text" placeholder="say smth" name="beginYear" value="{{ model.beginYear }}"required>
+            </label>
+
+            <label>Месяц начала сбора
+                <input type="text" placeholder="say smth" name="beginMonth" value="{{ model.beginMonth }}"required>
+            </label>
+
+            <label>Дата начала сбора
+                <input type="text" placeholder="say smth" name="beginDay" value="{{ model.beginDay }}"required>
+            </label>
+
+            <label>Год конца сбора
+                <input type="text" placeholder="say smth" name="endYear" value="{{ model.endYear }}"required>
+            </label>
+
+            <label>Месяц конца сбора
+                <input type="text" placeholder="say smth" name="endMonth" value="{{ model.endMonth }}"required>
+            </label>
+
+            <label>Дата конца сбора
+                <input type="text" placeholder="say smth" name="endDay" value="{{ model.endDay }}"required>
+            </label>
+
+            <label>
+                <button class="button"><strong>Создать</strong></button>
+            </label>
+        </form>
+
+    {%endblock%}

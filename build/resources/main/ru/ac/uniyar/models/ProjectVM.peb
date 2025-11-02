@@ -1,0 +1,13 @@
+{% extends "./layout.peb" %}
+    {% block title %}{{ model.project.projectName }}{% endblock %}
+
+    {% block content %}
+        <p>Проект: {{ model.project.projectName }}.</p>
+        <p>Время добавления: {{ model.project.addTime }}.</p>
+        <p>Предприниматель: {{ model.project.entrepreneur }}.</p>
+        <p>Описание: {{ model.project.description }}.</p>
+        <p>Целевой размер фонда: {{ model.project.targetFundSize }} рублей.</p>
+        <p>Дата начала сбора средств: {{ model.project.startDate }}.</p>
+        <p>Срок окончания сбора средств: {{ model.project.endDate }}.</p>
+        <p><a href="/project/{{ model.project.id }}/edit">Редактировать</a></p>
+    {% endblock %}

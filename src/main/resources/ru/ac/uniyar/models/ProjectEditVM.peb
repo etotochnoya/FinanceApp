@@ -1,0 +1,43 @@
+    {% extends "./layout.peb" %}
+        {% block title %}Редактирование проекта{% endblock %}
+
+    {% block content %}
+    <form target="_self" method="POST">
+        <label>entrepreneur
+            <input type="text" placeholder="rayan" name="entrepreneur" value="{{model.project.entrepreneur}}">
+        </label>
+
+        <label>Название проекта
+            <input type="text" placeholder="say smth" name="projectName" value="{{ model.project.projectName }}">
+        </label>
+
+        <label>Описание
+            <input type="text" placeholder="say smth" name="description" value="{{ model.project.description }}">
+        </label>
+
+        <label>Размер фонда
+            <input type="text" placeholder="say smth" name="targetFundSize" value="{{ model.project.targetFundSize }}">
+        </label>
+
+        <label>Год начала сбора
+            <input type="text" placeholder="say smth" name="beginYear" value="{{ model.project.startDate.year }}">
+        </label>
+
+        <label>Месяц начала сбора
+            <input type="text" placeholder="say smth" name="beginMonth" value="{{ model.project.startDate.monthValue }}">
+        </label>
+
+        <label>Год конца сбора
+            <input type="text" placeholder="say smth" name="endYear" value="{{ model.project.endDate.year }}">
+        </label>
+
+        <label>Месяц конца сбора
+            <input type="text" placeholder="say smth" name="endMonth" value="{{ model.project.endDate.monthValue }}">
+        </label>
+
+        <label>
+            <button class="button"><strong>Принять изменения</strong></button>
+        </label>
+    </form>
+
+    {%endblock%}

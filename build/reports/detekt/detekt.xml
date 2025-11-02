@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="4.3">
+<file name="D:/Developer/WebApplication/src/main/kotlin/ru/ac/uniyar/domain/Project.kt">
+	<error line="5" column="14" severity="warning" message="The constructor(id: Int, projectName: String, entrepreneur: String, description: String, targetFundSize: Long, startDate: LocalDateTime, endDate: LocalDateTime, addTime: LocalDateTime) has too many parameters. The current threshold is set to 7." source="detekt.LongParameterList" />
+	<error line="16" column="2" severity="warning" message="The file D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\domain\Project.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="D:/Developer/WebApplication/src/main/kotlin/ru/ac/uniyar/WebApplication.kt">
+	<error line="1" column="1" severity="warning" message="File &apos;D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt&apos; with &apos;15&apos; functions detected. Defined threshold inside files is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
+	<error line="28" column="1" severity="warning" message="ru.ac.uniyar.models.* is a wildcard import. Replace it with fully qualified imports." source="detekt.WildcardImport" />
+	<error line="173" column="13" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="174" column="30" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="174" column="36" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="174" column="39" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="175" column="30" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="175" column="36" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="175" column="40" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="185" column="13" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="186" column="30" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="186" column="39" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="187" column="30" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="187" column="36" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="187" column="39" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="199" column="37" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="137" column="19" severity="warning" message="Function parameter `renderer` is unused." source="detekt.UnusedPrivateMember" />
+</file>
+<file name="D:/Developer/WebApplication/src/main/kotlin/ru/ac/uniyar/models/MainPageVM.kt">
+	<error line="5" column="17" severity="warning" message="An empty default constructor can be removed." source="detekt.EmptyDefaultConstructor" />
+</file>
+<file name="D:/Developer/WebApplication/src/main/kotlin/ru/ac/uniyar/models/NewUserVM.kt">
+	<error line="5" column="16" severity="warning" message="An empty default constructor can be removed." source="detekt.EmptyDefaultConstructor" />
+	<error line="5" column="29" severity="warning" message="The file D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\models\NewUserVM.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="D:/Developer/WebApplication/src/main/kotlin/ru/ac/uniyar/domain/Projects.kt">
+	<error line="42" column="81" severity="warning" message="A call to the default constructor of an exception was detected. Instead one of the constructor overloads should be called. This allows to provide more meaningful exceptions." source="detekt.ThrowingExceptionsWithoutMessageOrCause" />
+	<error line="6" column="5" severity="warning" message="A member is named after the class. This might result in confusion. Either rename the member or change it to a constructor." source="detekt.MemberNameEqualsClassName" />
+</file>
+<file name="D:/Developer/WebApplication/src/main/kotlin/ru/ac/uniyar/domain/Users.kt">
+	<error line="4" column="5" severity="warning" message="A member is named after the class. This might result in confusion. Either rename the member or change it to a constructor." source="detekt.MemberNameEqualsClassName" />
+	<error line="5" column="2" severity="warning" message="The file D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\domain\Users.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="D:/Developer/WebApplication/src/main/kotlin/ru/ac/uniyar/formats/MultipartExample.kt">
+	<error line="9" column="12" severity="warning" message="The file name &apos;MultipartExample&apos; does not match the name of the single top-level declaration &apos;Name&apos;." source="detekt.MatchingDeclarationName" />
+</file>
+<file name="D:/Developer/WebApplication/src/main/kotlin/ru/ac/uniyar/storage/Salt.kt">
+	<error line="4" column="5" severity="warning" message="A member is named after the class. This might result in confusion. Either rename the member or change it to a constructor." source="detekt.MemberNameEqualsClassName" />
+	<error line="5" column="2" severity="warning" message="The file D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\storage\Salt.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="D:/Developer/WebApplication/src/main/kotlin/ru/ac/uniyar/domain/User.kt">
+	<error line="9" column="2" severity="warning" message="The file D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\domain\User.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="D:/Developer/WebApplication/src/main/kotlin/ru/ac/uniyar/models/NewProjectVM.kt">
+	<error line="5" column="20" severity="warning" message="Private property `id` is unused." source="detekt.UnusedPrivateMember" />
+</file>
+<file name="D:/Developer/WebApplication/src/main/kotlin/ru/ac/uniyar/models/ProjectEditVM.kt">
+	<error line="6" column="53" severity="warning" message="The file D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\models\ProjectEditVM.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+<file name="D:/Developer/WebApplication/src/main/kotlin/ru/ac/uniyar/models/UsersVM.kt">
+	<error line="6" column="48" severity="warning" message="The file D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\models\UsersVM.kt is not ending with a new line." source="detekt.NewLineAtEndOfFile" />
+</file>
+</checkstyle>

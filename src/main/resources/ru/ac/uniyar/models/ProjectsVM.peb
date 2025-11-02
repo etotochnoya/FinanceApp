@@ -1,0 +1,27 @@
+{% extends "./layout.peb" %}
+
+    {% block title %}Проекты{% endblock %}
+
+    {% block content %}
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>Название проекта</strong></th>
+                    <th><strong>Предпрениматель</strong></th>
+                    <th><strong>Дата окончания сбора</strong></th>
+                    <th><strong>Подробности</strong></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {%for project in model.projects%}
+                    <tr>
+                        <td>{{ project["projectName"]}}</td>
+                        <td>{{  project["entrepreneur"]}}</td>
+                        <td>{{ project["endDate"]}}</td>
+                        <td><a href="/project/{{ project["id"]}}">Больше тут</a></td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    {%endblock%}

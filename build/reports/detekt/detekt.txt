@@ -1,0 +1,33 @@
+LongParameterList - 8/7 - [Project] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\domain\Project.kt:5:14 - Signature=Project.kt$Project$( val id: Int, val projectName: String, val entrepreneur: String, val description: String, val targetFundSize: Long, val startDate: LocalDateTime, val endDate: LocalDateTime, val addTime: LocalDateTime = LocalDateTime.now(), )
+TooManyFunctions - 15/11 - [WebApplication.kt] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:1:1 - Signature=WebApplication.kt$ru.ac.uniyar.WebApplication.kt
+EmptyDefaultConstructor - [MainPageVM] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\models\MainPageVM.kt:5:17 - Signature=MainPageVM.kt$MainPageVM$()
+EmptyDefaultConstructor - [NewUserVM] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\models\NewUserVM.kt:5:16 - Signature=NewUserVM.kt$NewUserVM$()
+ThrowingExceptionsWithoutMessageOrCause - [project] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\domain\Projects.kt:42:81 - Signature=Projects.kt$Projects$IllegalArgumentException()
+MemberNameEqualsClassName - [projects] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\domain\Projects.kt:6:5 - Signature=Projects.kt$Projects$private val projects = myProjects.toMutableList()
+MemberNameEqualsClassName - [users] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\domain\Users.kt:4:5 - Signature=Users.kt$Users$val users = myUsers.toMutableList()
+MatchingDeclarationName - [Name] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\formats\MultipartExample.kt:9:12 - Signature=MultipartExample.kt$Name
+MemberNameEqualsClassName - [salt] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\storage\Salt.kt:4:5 - Signature=Salt.kt$Salt$val salt = "pSMoOb69C!lnDe@-6wM=49W9?GbLUUxlz2)m8dsXB/1*.gtpOJcDyA-jgvk*)+:e?vKa0OU(V?WsW5xAKQI6YCWpizh2gQX.z+bp"
+NewLineAtEndOfFile - [Project.kt] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\domain\Project.kt:16:2 - Signature=Project.kt$ru.ac.uniyar.domain.Project.kt
+NewLineAtEndOfFile - [User.kt] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\domain\User.kt:9:2 - Signature=User.kt$ru.ac.uniyar.domain.User.kt
+NewLineAtEndOfFile - [Users.kt] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\domain\Users.kt:5:2 - Signature=Users.kt$ru.ac.uniyar.domain.Users.kt
+UnusedPrivateMember - [id] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\models\NewProjectVM.kt:5:20 - Signature=NewProjectVM.kt$NewProjectVM$id: Int
+NewLineAtEndOfFile - [NewUserVM.kt] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\models\NewUserVM.kt:5:29 - Signature=NewUserVM.kt$ru.ac.uniyar.models.NewUserVM.kt
+NewLineAtEndOfFile - [ProjectEditVM.kt] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\models\ProjectEditVM.kt:6:53 - Signature=ProjectEditVM.kt$ru.ac.uniyar.models.ProjectEditVM.kt
+NewLineAtEndOfFile - [UsersVM.kt] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\models\UsersVM.kt:6:48 - Signature=UsersVM.kt$ru.ac.uniyar.models.UsersVM.kt
+NewLineAtEndOfFile - [Salt.kt] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\storage\Salt.kt:5:2 - Signature=Salt.kt$ru.ac.uniyar.storage.Salt.kt
+WildcardImport - [WebApplication.kt] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:28:1 - Signature=WebApplication.kt$import ru.ac.uniyar.models.*
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:173:13 - Signature=WebApplication.kt$1000000
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:174:30 - Signature=WebApplication.kt$2011
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:174:36 - Signature=WebApplication.kt$9
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:174:39 - Signature=WebApplication.kt$16
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:175:30 - Signature=WebApplication.kt$2011
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:175:36 - Signature=WebApplication.kt$11
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:175:40 - Signature=WebApplication.kt$3
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:185:13 - Signature=WebApplication.kt$300000
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:186:30 - Signature=WebApplication.kt$2000
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:186:39 - Signature=WebApplication.kt$21
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:187:30 - Signature=WebApplication.kt$2000
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:187:36 - Signature=WebApplication.kt$4
+MagicNumber - [fillData] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:187:39 - Signature=WebApplication.kt$14
+MagicNumber - [server] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:199:37 - Signature=WebApplication.kt$9000
+UnusedPrivateMember - [renderer] at D:\Developer\WebApplication\src\main\kotlin\ru\ac\uniyar\WebApplication.kt:137:19 - Signature=WebApplication.kt$renderer: TemplateRenderer

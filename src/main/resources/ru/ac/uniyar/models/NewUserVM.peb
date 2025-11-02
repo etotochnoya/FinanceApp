@@ -1,0 +1,18 @@
+    {% extends "./layout.peb" %}
+        {% block title %}Создание проекта{% endblock %}
+
+    {% block content %}
+    <form target="_self" method="POST">
+        <label>Логин
+            <input type="text" placeholder="rayan" name="login" value="{{model.login}}"required>
+        </label>
+
+        <label>Пароль
+            <input type="text" placeholder="say smth" name="password" value="{{ model.password }}"required>
+        </label>
+
+        <label>
+            <button class="button"><strong>Создать</strong></button>
+        </label>
+    </form>
+    {%endblock%}
