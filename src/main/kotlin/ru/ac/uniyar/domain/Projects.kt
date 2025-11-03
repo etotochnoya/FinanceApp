@@ -4,16 +4,14 @@ import java.lang.IllegalArgumentException
 
 class Projects(myProjects: List<Project>) {
     private val projects: List<Project> = myProjects.toList()
-    var counterProjects = projects.size
 
     fun add(project: Project): Projects{
-        counterProjects++
         return Projects(projects + project)
     }
 
     fun size() = projects.size
 
-    fun getList(): List<Project> = projects
+    fun getList(): List<Project> = projects.toList()
 
     fun projectNameFilter(name: String?): List<Project> {
         val filteredProjects = mutableListOf<Project>()

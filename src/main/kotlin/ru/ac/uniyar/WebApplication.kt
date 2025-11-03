@@ -47,7 +47,7 @@ fun showProject(renderer: TemplateRenderer, manager: MutableProjectManager): Htt
 }
 
 fun showNewProject(renderer: TemplateRenderer, manager: MutableProjectManager): HttpHandler = {
-    val id = manager.projects.counterProjects
+    val id = manager.projects.size()
     Response(Status.OK).body(renderer(NewProjectVM(id)))
 }
 
@@ -83,7 +83,7 @@ fun createNewProject(manager: MutableProjectManager): HttpHandler = {
 
     manager.updateProjects { currentRepo ->
         currentRepo.add(Project(
-            projects.counterProjects,
+            projects.size(),
             projectName.toString(),
             entrepreneur.toString(),
             description.toString(),
@@ -93,7 +93,7 @@ fun createNewProject(manager: MutableProjectManager): HttpHandler = {
         ))
     }
 
-    Response(Status.FOUND).header("Location", "/project/" + (projects.counterProjects - 1).toString())
+    Response(Status.FOUND).header("Location", "/project/" + (projects.size()).toString())
 }
 
 fun showEditPage(renderer: TemplateRenderer, manager: MutableProjectManager): HttpHandler = {
