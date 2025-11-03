@@ -3,12 +3,12 @@ package ru.ac.uniyar.domain
 import java.lang.IllegalArgumentException
 
 class Projects(myProjects: List<Project>) {
-    private val projects = myProjects.toMutableList()
+    private val projects: List<Project> = myProjects.toList()
     var counterProjects = projects.size
 
-    fun add(project: Project) {
-        projects.add(project)
+    fun add(project: Project): Projects{
         counterProjects++
+        return Projects(projects + project)
     }
 
     fun size() = projects.size
@@ -38,20 +38,27 @@ class Projects(myProjects: List<Project>) {
         return filteredProjects.sortedBy { it.id }
     }
 
-    fun removeToId(id: Int){
+    fun removeToId(id: Int): Projects{
+        val newProjects = mutableListOf<Project>()
+
         for(i in 0 until projects.size)
-            if(projects[i].id == id){
-                projects.removeAt(i)
-                return
+            if(projects[i].id != id){
+                newProjects.add(projects[i])
             }
+        return Projects(newProjects)
     }
 
-    fun replaceToId(project: Project){
+    fun replaceToId(project: Project): Projects{
+        val newProjects = mutableListOf<Project>()
+
         for(i in 0 until projects.size)
             if(projects[i].id == project.id){
-                projects[i] = project
-                return
+                newProjects.add(project)
             }
+            else{
+                newProjects.add(projects[i])
+            }
+        return Projects(newProjects)
     }
 
     fun takeToId(id: Int): Project {

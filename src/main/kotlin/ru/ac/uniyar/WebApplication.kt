@@ -122,7 +122,7 @@ fun editProject(projects: Projects): HttpHandler = {
         endDate,
     )
     projects.replaceToId(otherProject)
-    //projects.add(editProject)
+
     Response(FOUND).header("Location", "/project/" + id.toString())
 }
 
@@ -164,9 +164,9 @@ fun router(renderer: TemplateRenderer, projects: Projects, users: Users): HttpHa
 
 fun fillData(): Projects {
 
-    val projects = Projects(listOf())
+    var projects = Projects(listOf())
     var newProjectId = 0
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Онлайн сервис такси",
@@ -178,7 +178,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Печать визиток",
@@ -190,7 +190,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Разработка мобильного приложения",
@@ -202,7 +202,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Создание онлайн-курсов",
@@ -214,7 +214,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Автоматизация вывоза мусора",
@@ -226,7 +226,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "3D-печать архитектурных моделей",
@@ -238,7 +238,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Разработка игры-головоломки",
@@ -250,7 +250,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Автоматизация складских процессов",
@@ -262,7 +262,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Разработка CRM-системы",
@@ -274,7 +274,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Оптимизация SEO для интернет-магазина",
@@ -290,7 +290,7 @@ fun fillData(): Projects {
 }
 
 fun main() {
-    val projects = fillData()
+    var projects = fillData()
     val users = Users(listOf(User("admin", "123")))
     val renderer = PebbleTemplates().HotReload("src/main/resources")
     val app = router(renderer, projects, users)
