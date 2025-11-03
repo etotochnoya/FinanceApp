@@ -29,6 +29,7 @@ class Projects(myProjects: List<Project>) {
 
     fun entrepreneurFilter(name: String?): List<Project> {
         val filteredProjects = mutableListOf<Project>()
+
         for (project in projects) {
             if (project.entrepreneur == name) {
                 filteredProjects.add(project)
@@ -45,6 +46,7 @@ class Projects(myProjects: List<Project>) {
             if(projects[i].id != id){
                 newProjects.add(projects[i])
             }
+
         return Projects(newProjects)
     }
 
@@ -58,6 +60,7 @@ class Projects(myProjects: List<Project>) {
             else{
                 newProjects.add(projects[i])
             }
+
         return Projects(newProjects)
     }
 
