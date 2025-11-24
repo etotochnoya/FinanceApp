@@ -2,7 +2,7 @@ package ru.ac.uniyar.domain
 
 import java.time.LocalDateTime
 
-class Project(
+data class Project(
     val id: Int,
     val projectName: String,
     val entrepreneur: String,
