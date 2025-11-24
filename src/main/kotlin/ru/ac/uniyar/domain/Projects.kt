@@ -4,8 +4,7 @@ import java.lang.IllegalArgumentException
 
 class Projects(myProjects: List<Project>) {
     private val projects: List<Project> = myProjects.toList()
-
-    fun add(project: Project): Projects{
+    fun addNewProject(project: Project): Projects{
         return Projects(projects + project)
     }
 

@@ -82,7 +82,7 @@ fun createNewProject(manager: MutableProjectManager): HttpHandler = {
     var projects = manager.projects
 
     manager.updateProjects { currentRepo ->
-        currentRepo.add(Project(
+        currentRepo.addNewProject(Project(
             projects.size(),
             projectName.toString(),
             entrepreneur.toString(),
@@ -175,7 +175,7 @@ fun fillData(): Projects {
 
     var projects = Projects(listOf())
     var newProjectId = 0
-    projects = projects.add(
+    projects = projects.addNewProject(
         Project(
             newProjectId++,
             "Онлайн сервис такси",
@@ -187,7 +187,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects = projects.add(
+    projects = projects.addNewProject(
         Project(
             newProjectId++,
             "Печать визиток",
@@ -199,7 +199,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects = projects.add(
+    projects = projects.addNewProject(
         Project(
             newProjectId++,
             "Разработка мобильного приложения",
@@ -211,7 +211,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects = projects.add(
+    projects = projects.addNewProject(
         Project(
             newProjectId++,
             "Создание онлайн-курсов",
@@ -223,7 +223,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects = projects.add(
+    projects = projects.addNewProject(
         Project(
             newProjectId++,
             "Автоматизация вывоза мусора",
@@ -235,7 +235,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects = projects.add(
+    projects = projects.addNewProject(
         Project(
             newProjectId++,
             "3D-печать архитектурных моделей",
@@ -247,7 +247,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects = projects.add(
+    projects = projects.addNewProject(
         Project(
             newProjectId++,
             "Разработка игры-головоломки",
@@ -259,7 +259,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects = projects.add(
+    projects = projects.addNewProject(
         Project(
             newProjectId++,
             "Автоматизация складских процессов",
@@ -271,7 +271,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects = projects.add(
+    projects = projects.addNewProject(
         Project(
             newProjectId++,
             "Разработка CRM-системы",
@@ -283,7 +283,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects = projects.add(
+    projects = projects.addNewProject(
         Project(
             newProjectId++,
             "Оптимизация SEO для интернет-магазина",
