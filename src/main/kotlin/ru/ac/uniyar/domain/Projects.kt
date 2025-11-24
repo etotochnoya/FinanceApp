@@ -4,8 +4,13 @@ import java.lang.IllegalArgumentException
 
 class Projects(myProjects: List<Project>) {
     private val projects: List<Project> = myProjects.toList()
+
+    private fun addLastToProjectList(project: Project, projectList: List<Project>): List<Project>{
+        return projectList + project
+    }
+
     fun addNewProject(project: Project): Projects{
-        return Projects(projects + project)
+        return Projects(addLastToProjectList(project, projects))
     }
 
     fun size() = projects.size
@@ -13,11 +18,11 @@ class Projects(myProjects: List<Project>) {
     fun getList(): List<Project> = projects.toList()
 
     fun projectNameFilter(name: String?): List<Project> {
-        val filteredProjects = mutableListOf<Project>()
+        var filteredProjects: List<Project> = listOf()
 
         for (project in projects) {
             if (project.projectName == name) {
-                filteredProjects.add(project)
+                filteredProjects = addLastToProjectList(project, filteredProjects)
             }
         }
 
@@ -25,11 +30,11 @@ class Projects(myProjects: List<Project>) {
     }
 
     fun entrepreneurFilter(name: String?): List<Project> {
-        val filteredProjects = mutableListOf<Project>()
+        var filteredProjects: List<Project> = listOf()
 
         for (project in projects) {
             if (project.entrepreneur == name) {
-                filteredProjects.add(project)
+                filteredProjects = addLastToProjectList(project, filteredProjects)
             }
         }
 
@@ -37,25 +42,25 @@ class Projects(myProjects: List<Project>) {
     }
 
     fun removeToId(id: Int): Projects{
-        val newProjects = mutableListOf<Project>()
+        var newProjects: List<Project> = listOf()
 
         for(i in 0 until projects.size)
             if(projects[i].id != id){
-                newProjects.add(projects[i])
+                newProjects = addLastToProjectList(projects[i], newProjects)
             }
 
         return Projects(newProjects)
     }
 
     fun replaceToId(project: Project): Projects{
-        val newProjects = mutableListOf<Project>()
+        var newProjects: List<Project> = listOf()
 
         for(i in 0 until projects.size)
             if(projects[i].id == project.id){
-                newProjects.add(project)
+                newProjects = addLastToProjectList(project, newProjects)
             }
             else{
-                newProjects.add(projects[i])
+                newProjects = addLastToProjectList(projects[i], newProjects)
             }
 
         return Projects(newProjects)
