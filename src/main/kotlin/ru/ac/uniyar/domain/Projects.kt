@@ -3,17 +3,15 @@ package ru.ac.uniyar.domain
 import java.lang.IllegalArgumentException
 
 class Projects(myProjects: List<Project>) {
-    private val projects = myProjects.toMutableList()
-    var counterProjects = projects.size
+    private val projects: List<Project> = myProjects.toList()
 
-    fun add(project: Project) {
-        projects.add(project)
-        counterProjects++
+    fun add(project: Project): Projects{
+        return Projects(projects + project)
     }
 
     fun size() = projects.size
 
-    fun getList(): List<Project> = projects
+    fun getList(): List<Project> = projects.toList()
 
     fun projectNameFilter(name: String?): List<Project> {
         val filteredProjects = mutableListOf<Project>()
@@ -29,6 +27,7 @@ class Projects(myProjects: List<Project>) {
 
     fun entrepreneurFilter(name: String?): List<Project> {
         val filteredProjects = mutableListOf<Project>()
+
         for (project in projects) {
             if (project.entrepreneur == name) {
                 filteredProjects.add(project)
@@ -38,20 +37,29 @@ class Projects(myProjects: List<Project>) {
         return filteredProjects.sortedBy { it.id }
     }
 
-    fun removeToId(id: Int){
+    fun removeToId(id: Int): Projects{
+        val newProjects = mutableListOf<Project>()
+
         for(i in 0 until projects.size)
-            if(projects[i].id == id){
-                projects.removeAt(i)
-                return
+            if(projects[i].id != id){
+                newProjects.add(projects[i])
             }
+
+        return Projects(newProjects)
     }
 
-    fun replaceToId(project: Project){
+    fun replaceToId(project: Project): Projects{
+        val newProjects = mutableListOf<Project>()
+
         for(i in 0 until projects.size)
             if(projects[i].id == project.id){
-                projects[i] = project
-                return
+                newProjects.add(project)
             }
+            else{
+                newProjects.add(projects[i])
+            }
+
+        return Projects(newProjects)
     }
 
     fun takeToId(id: Int): Project {

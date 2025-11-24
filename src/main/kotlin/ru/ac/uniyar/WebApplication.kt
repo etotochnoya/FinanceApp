@@ -25,6 +25,7 @@ import ru.ac.uniyar.domain.Project
 import ru.ac.uniyar.domain.Projects
 import ru.ac.uniyar.domain.User
 import ru.ac.uniyar.domain.Users
+import ru.ac.uniyar.MutableProjectManager
 import ru.ac.uniyar.models.*
 import java.time.LocalDateTime
 
@@ -32,38 +33,41 @@ fun showMainPage(renderer: TemplateRenderer): HttpHandler = {
     Response(Status.OK).body(renderer(MainPageVM()))
 }
 
-fun showProjectsPage(renderer: TemplateRenderer, projects: Projects): HttpHandler = {
+fun showProjectsPage(renderer: TemplateRenderer, manager: MutableProjectManager): HttpHandler = {
+    val projects = manager.projects
     Response(Status.OK).body(renderer(ProjectsVM(projects.getList())))
 }
 
-fun showProject(renderer: TemplateRenderer, projectsList: List<Project>): HttpHandler = { request ->
+fun showProject(renderer: TemplateRenderer, manager: MutableProjectManager): HttpHandler = { request ->
     val id = request.path("id").toString()
+    val projectsList = manager.projects.getList()
     val projects = Projects(projectsList)
     val project = projects.takeToId(id.toInt())
     Response(OK).body(renderer(ProjectVM(project)))
 }
 
-fun showNewProject(renderer: TemplateRenderer, id: Int): HttpHandler = {
+fun showNewProject(renderer: TemplateRenderer, manager: MutableProjectManager): HttpHandler = {
+    val id = manager.projects.size()
     Response(Status.OK).body(renderer(NewProjectVM(id)))
 }
 
-fun showProjectsWithNameFilter(renderer: TemplateRenderer, projects: Projects): HttpHandler = {
+fun showProjectsWithNameFilter(renderer: TemplateRenderer, manager: MutableProjectManager): HttpHandler = {
     val uri = it.uri
     val parametrs = uri.queries()
     val name = parametrs.findSingle("name")
-    val myProjects = projects.projectNameFilter(name)
+    val myProjects = manager.projects.projectNameFilter(name)
     Response(Status.OK).body(renderer(NameFilterVM(myProjects, name)))
 }
 
-fun showProjectsWithEnterpreneurFilter(renderer: TemplateRenderer, projects: Projects): HttpHandler = {
+fun showProjectsWithEnterpreneurFilter(renderer: TemplateRenderer, manager: MutableProjectManager): HttpHandler = {
     val uri = it.uri
     val parametrs = uri.queries()
     val name = parametrs.findSingle("name")
-    val myProjects = projects.entrepreneurFilter(name)
+    val myProjects = manager.projects.entrepreneurFilter(name)
     Response(Status.OK).body(renderer(EnterpreneurFilterVM(myProjects, name)))
 }
 
-fun createNewProject(projects: Projects): HttpHandler = {
+fun createNewProject(manager: MutableProjectManager): HttpHandler = {
     val form = it.form()
     val entrepreneur = form.findSingle("entrepreneur")
     val projectName = form.findSingle("projectName")
@@ -75,31 +79,34 @@ fun createNewProject(projects: Projects): HttpHandler = {
     val endYear = form.findSingle("endYear")
     val endMonth = form.findSingle("endMonth")
     val endDay = form.findSingle("endDay")
-    projects.add(
-        Project(
-            projects.counterProjects,
+    var projects = manager.projects
+
+    manager.updateProjects { currentRepo ->
+        currentRepo.add(Project(
+            projects.size(),
             projectName.toString(),
             entrepreneur.toString(),
             description.toString(),
             targetFundSize!!.toLong(),
-
             LocalDateTime.of(beginYear!!.toInt(), beginMonth!!.toInt(), beginDay!!.toInt(), 0, 0, 0),
             LocalDateTime.of(endYear!!.toInt(), endMonth!!.toInt(), endDay!!.toInt(), 0, 0, 0),
-        ),
-    )
-    Response(Status.FOUND).header("Location", "/project/" + (projects.counterProjects - 1).toString())
+        ))
+    }
+
+    Response(Status.FOUND).header("Location", "/project/" + (projects.size()).toString())
 }
 
-fun showEditPage(renderer: TemplateRenderer, projects: Projects): HttpHandler = {
+fun showEditPage(renderer: TemplateRenderer, manager: MutableProjectManager): HttpHandler = {
     val id = it.path("id")!!.toInt()
-    val project = projects.takeToId(id)
+    val project = manager.projects.takeToId(id)
     val projectEditVM = ProjectEditVM(project)
     Response(OK).body(renderer(projectEditVM))
 }
 
-fun editProject(projects: Projects): HttpHandler = {
+fun editProject(manager: MutableProjectManager): HttpHandler = {
     val id = it.path("id")!!.toInt()
-    val project = projects.takeToId(id)
+    val currentProjects = manager.projects
+    val projectToEdit = currentProjects.takeToId(id)
     val form = it.form()
     val startDate = LocalDateTime.of(
         form.findSingle("beginYear")!!.toInt(),
@@ -111,9 +118,8 @@ fun editProject(projects: Projects): HttpHandler = {
         form.findSingle("endMonth")!!.toInt(),
         1, 1, 1 ,1
     )
-
     val otherProject = Project(
-        project.id,
+        projectToEdit.id,
         form.findSingle("projectName")!!.toString(),
         form.findSingle("entrepreneur")!!.toString(),
         form.findSingle("description")!!.toString(),
@@ -121,8 +127,11 @@ fun editProject(projects: Projects): HttpHandler = {
         startDate,
         endDate,
     )
-    projects.replaceToId(otherProject)
-    //projects.add(editProject)
+
+    manager.updateProjects { currentRepo ->
+        currentRepo.replaceToId(otherProject)
+    }
+
     Response(FOUND).header("Location", "/project/" + id.toString())
 }
 
@@ -143,30 +152,30 @@ fun createNewUser(renderer: TemplateRenderer, users: Users): HttpHandler = {
     Response(Status.FOUND).header("Location", "/users")
 }
 
-fun router(renderer: TemplateRenderer, projects: Projects, users: Users): HttpHandler = routes(
+fun router(renderer: TemplateRenderer, manager: MutableProjectManager, users: Users): HttpHandler = routes(
     "/" bind GET to showMainPage(renderer),
-    "/project" bind GET to showProjectsPage(renderer, projects),
+    "/project" bind GET to showProjectsPage(renderer, manager),
 
     "/users" bind GET to showUsersPage(renderer, users),
     "/users/new" bind GET to showNewUser(renderer),
     "/users/new" bind Method.POST to createNewUser(renderer, users),
 
-    "/new" bind GET to showNewProject(renderer, projects.counterProjects),
-    "/new" bind Method.POST to createNewProject(projects),
-    "/project/{id}" bind GET to showProject(renderer, projects.getList()),
-    "/project/{id}/edit" bind GET to showEditPage(renderer, projects),
-    "project/{id}/edit" bind Method.POST to editProject(projects),
+    "/new" bind GET to showNewProject(renderer, manager),
+    "/new" bind Method.POST to createNewProject(manager),
+    "/project/{id}" bind GET to showProject(renderer, manager),
+    "/project/{id}/edit" bind GET to showEditPage(renderer, manager),
+    "project/{id}/edit" bind Method.POST to editProject(manager),
 
-    "/nameFilter" bind GET to showProjectsWithNameFilter(renderer, projects),
-    "/entrepreneurFilter" bind GET to showProjectsWithEnterpreneurFilter(renderer, projects),
+    "/nameFilter" bind GET to showProjectsWithNameFilter(renderer, manager),
+    "/entrepreneurFilter" bind GET to showProjectsWithEnterpreneurFilter(renderer, manager),
     static(ResourceLoader.Classpath("/ru/ac/uniyar/public/")),
 )
 
 fun fillData(): Projects {
 
-    val projects = Projects(listOf())
+    var projects = Projects(listOf())
     var newProjectId = 0
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Онлайн сервис такси",
@@ -178,7 +187,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Печать визиток",
@@ -190,7 +199,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Разработка мобильного приложения",
@@ -202,7 +211,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Создание онлайн-курсов",
@@ -214,7 +223,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Автоматизация вывоза мусора",
@@ -226,7 +235,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "3D-печать архитектурных моделей",
@@ -238,7 +247,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Разработка игры-головоломки",
@@ -250,7 +259,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Автоматизация складских процессов",
@@ -262,7 +271,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Разработка CRM-системы",
@@ -274,7 +283,7 @@ fun fillData(): Projects {
         ),
     )
 
-    projects.add(
+    projects = projects.add(
         Project(
             newProjectId++,
             "Оптимизация SEO для интернет-магазина",
@@ -290,10 +299,11 @@ fun fillData(): Projects {
 }
 
 fun main() {
-    val projects = fillData()
+    var projects = fillData()
     val users = Users(listOf(User("admin", "123")))
     val renderer = PebbleTemplates().HotReload("src/main/resources")
-    val app = router(renderer, projects, users)
+    val manager = MutableProjectManager(projects)
+    val app = router(renderer, manager, users)
     val server = app.asServer(Jetty(9000)).start()
     println("Server started on " + server.port())
 }
