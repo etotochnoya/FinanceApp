@@ -18,13 +18,9 @@ class Projects(myProjects: List<Project>) {
     fun getList(): List<Project> = projects.toList()
 
     private fun filterProjectListByName(name: String?, projectList: List<Project>): List<Project>{
-        var filteredProjects: List<Project> = listOf()
-        for (project in projects) {
-            if (project.projectName == name) {
-                filteredProjects = addLastToProjectList(project, filteredProjects)
-            }
-        }
-        return filteredProjects
+        if (projectList.isEmpty())
+            return emptyList()
+        return projectList.filter { project -> project.projectName == name }
     }
     fun projectNameFilter(name: String?): List<Project> {
         val filteredProjects = filterProjectListByName(name, projects)
@@ -32,13 +28,9 @@ class Projects(myProjects: List<Project>) {
     }
 
     private fun filterProjectListByEntrepreneur(name: String?, projectList: List<Project>): List<Project>{
-        var filteredProjects: List<Project> = listOf()
-        for (project in projects) {
-            if (project.entrepreneur == name) {
-                filteredProjects = addLastToProjectList(project, filteredProjects)
-            }
-        }
-        return filteredProjects
+        if (projectList.isEmpty())
+            return emptyList()
+        return projectList.filter{ project -> project.entrepreneur == name }
     }
     fun entrepreneurFilter(name: String?): List<Project> {
         val filteredProjects = filterProjectListByEntrepreneur(name, projects)
@@ -46,41 +38,33 @@ class Projects(myProjects: List<Project>) {
     }
 
     private fun removeProjectFromList(id: Int, projectList: List<Project>): List<Project>{
-        var newProjects: List<Project> = listOf()
-        for(i in 0 until projects.size)
-            if(projects[i].id != id){
-                newProjects = addLastToProjectList(projects[i], newProjects)
-            }
-        return newProjects
+        return projectList.filter { project -> project.id != id }
     }
     fun removeToId(id: Int): Projects{
         val newProjects = removeProjectFromList(id, projects)
         return Projects(newProjects)
     }
 
-    private fun replaceProjectInList(project: Project, projectList: List<Project>): List<Project>{
-        var newProjects: List<Project> = listOf()
-        for(i in 0 until projects.size)
-            if(projects[i].id == project.id){
-                newProjects = addLastToProjectList(project, newProjects)
+    private fun replaceProjectInList(project: Project, projectList: List<Project>): List<Project> {
+
+        return projectList.map { currentProject ->
+            if (currentProject.id == project.id) {
+                project
+            } else {
+                currentProject
             }
-            else{
-                newProjects = addLastToProjectList(projects[i], newProjects)
-            }
-        return newProjects
+        }
     }
     fun replaceToId(project: Project): Projects{
         val newProjects = replaceProjectInList(project, projects)
         return Projects(newProjects)
     }
 
-    private fun findProjectById(id: Int, projectList: List<Project>): Project{
-        for (project in projectList) {
-            if (project.id == id) {
-                return project
-            }
+    private fun findProjectById(id: Int, projectList: List<Project>): Project {
+        val foundProject = projectList.find { project ->
+            project.id == id
         }
-        throw IllegalArgumentException("Project $id not found.")
+        return foundProject ?: throw IllegalArgumentException("Project $id not found.")
     }
     fun takeToId(id: Int): Project {
         return findProjectById(id, projects)
