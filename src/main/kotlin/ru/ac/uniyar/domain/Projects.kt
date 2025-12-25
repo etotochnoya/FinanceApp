@@ -6,7 +6,7 @@ class Projects(myProjects: List<Project>) {
     private val projects: List<Project> = myProjects.toList()
 
     private fun addLastToProjectList(project: Project, projectList: List<Project>): List<Project>{
-        return projectList + project.copy()
+        return projectList + project
     }
 
     fun addNewProject(project: Project): Projects{
